@@ -28,3 +28,45 @@ git clone https://github.com/venkatasaikumarguntupalli/k8s-log-aggregator.git
 cd k8s-log-aggregator
 pip install -r requirements.txt
 ```
+
+## Usage
+
+Aggregate logs in terminal
+
+```bash
+python k8s_log_aggregator.py -n default -l app=my-service
+```
+
+Filter only error logs
+
+```bash
+python k8s_log_aggregator.py -n default -l app=my-service --grep "ERROR|Exception"
+```
+
+Fetch logs from the last 10 minutes
+
+```bash
+python k8s_log_aggregator.py -n default -l app=my-service --since 10m
+```
+
+Fetch previous logs from crashed containers
+
+```bash
+python k8s_log_aggregator.py -n default -l app=my-service --previous
+```
+
+Save logs to files
+
+```bash
+python k8s_log_aggregator.py -n default -l app=my-service --json-output logs.json
+```
+
+Export logs as JSON
+
+```bash
+python k8s_log_aggregator.py -n default -l app=my-service --json-output logs.json
+```
+
+## Motivation
+
+Debugging distributed services in Kubernetes often requires checking logs across multiple pods one by one. This tool simplifies that process by aggregating logs in a single place and adding basic filtering and export options.
